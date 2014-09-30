@@ -20,12 +20,20 @@ module Elasticsearch
 
         # Get or set the index name used when storing and retrieving documents
         #
-        def index_name name=nil
-          @index_name = name || @index_name || begin
-            if respond_to?(:host) && host && host.is_a?(Module)
-              self.host.to_s.underscore.gsub(/\//, '-')
-            else
-              self.class.to_s.underscore.gsub(/\//, '-')
+        def index_name name=nil, &block
+          if name || block_given?
+            return (@index_name = name || block)
+          end
+
+          if @index_name.respond_to?(:call)
+            @index_name.call
+          else
+            @index_name = @index_name || begin
+              if respond_to?(:host) && host && host.is_a?(Module)
+                self.host.to_s.underscore.gsub(/\//, '-')
+              else
+                self.class.to_s.underscore.gsub(/\//, '-')
+              end
             end
           end
         end; alias :index :index_name
