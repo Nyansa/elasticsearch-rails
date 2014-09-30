@@ -35,6 +35,7 @@ module Elasticsearch
       #
       class Mappings
         attr_accessor :options
+        attr_accessor :type
 
         def initialize(type, options={})
           raise ArgumentError, "`type` is missing" if type.nil?
@@ -133,9 +134,10 @@ module Elasticsearch
         def mapping(options={}, &block)
           @mapping ||= Mappings.new(document_type, options)
 
-          if block_given?
-            @mapping.options.update(options)
+          @mapping.type = document_type unless document_type.nil?
+          @mapping.options.update(options) unless options.empty?
 
+          if block_given?
             @mapping.instance_eval(&block)
             return self
           else
