@@ -79,7 +79,6 @@ module Elasticsearch
                      :exists?,
                      :create_index!,
                      :refresh_index!,
-                     :delete_index!,
               to: :gateway
           end
 
