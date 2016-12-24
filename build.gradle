@@ -12,13 +12,13 @@ buildDeb {
     arch = "amd64"
     os = LINUX
 
-    preInstall file('script/deb/preInstall.sh')
-    postInstall file('script/deb/postInstall.sh')
-    preUninstall file('script/deb/preUninstall.sh')
-    postUninstall file('script/deb/postUninstall.sh')
+    preInstall file('deb/preInstall.sh')
+    postInstall file('deb/postInstall.sh')
+    preUninstall file('deb/preUninstall.sh')
+    postUninstall file('deb/postUninstall.sh')
 
     into '/opt/voyance/voyance-ui'
-    from ('script/deb/es-rails.tar') {
+    from ('deb/es-rails.tar') {
         into '.'
     }
 }
