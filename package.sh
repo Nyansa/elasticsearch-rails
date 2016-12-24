@@ -7,7 +7,7 @@ echo "Updating version in build.gradle"
 version=`git describe`
 sed -i -e "s/VERSION_STRING/${version}/g" build.gradle
 
-echo "Creating a ES tar ball"
+echo "Creating an ES rails tar ball"
 tar -czf /tmp/es-rails.tar *
 mv /tmp/es-rails.tar deb/.
 
@@ -20,7 +20,7 @@ sed -i -e "s/${version}/VERSION_STRING/g" build.gradle
 sudo rm -rf build.gradle-e
 
 echo "Cleaning up tar file"
-sudo rm -rf deb/ui.tar
+sudo rm -rf deb/es-rails.tar
 
 deb_file=`ls build/distributions/ | grep deb`
 repository_key="packages-dev"
