@@ -6,6 +6,9 @@ echo "Extracting tar ball"
 cd ${package_dir}
 sudo tar xvf *.tar
 
+echo "Installing the bundler"
+sudo gem install bundler
+
 echo "Installing Elastic Model"
 cd ${package_dir}/elasticsearch-model
 bundle install
