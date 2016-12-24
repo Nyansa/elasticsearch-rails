@@ -17,7 +17,7 @@ buildDeb {
     preUninstall file('deb/preUninstall.sh')
     postUninstall file('deb/postUninstall.sh')
 
-    into '/opt/voyance/voyance-ui'
+    into '/opt/voyance/voyance-elasticsearchrails'
     from ('deb/es-rails.tar') {
         into '.'
     }
