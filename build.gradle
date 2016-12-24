@@ -1,0 +1,24 @@
+/**
+ * Plugins
+ */
+plugins {
+  id "nebula.ospackage" version "4.1.0"
+}
+
+buildDeb {
+    packageName = 'voyance-elasticsearchrails'
+    version = 'VERSION_STRING'
+    release = ''
+    arch = "amd64"
+    os = LINUX
+
+    preInstall file('script/deb/preInstall.sh')
+    postInstall file('script/deb/postInstall.sh')
+    preUninstall file('script/deb/preUninstall.sh')
+    postUninstall file('script/deb/postUninstall.sh')
+
+    into '/opt/voyance/voyance-ui'
+    from ('script/deb/es-rails.tar') {
+        into '.'
+    }
+}
